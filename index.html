@@ -50,12 +50,12 @@
 
     <div id="root"></div>
 
-    <script type="text/babel" data-type="module">
-        import { initializeApp } from 'https://www.gstatic.com/basejs/10.7.1/firebase-app.js';
-        import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
-        import { getFirestore, collection, doc, setDoc, onSnapshot, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+   <script type="text/babel" data-type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+    import { getFirestore, collection, doc, setDoc, onSnapshot, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
-        const { useState, useEffect, useMemo } = React;
+    const { useState, useEffect, useMemo } = React;
 
         // --- DADOS ---
        const VAGAS_DATA = [
@@ -306,14 +306,14 @@
 ];
 
       // --- CONFIGURAÇÃO FIREBASE (ATUALIZADA) ---
-        const firebaseConfig = {
-            apiKey: "AIzaSyCPL6vlsPj7lJhNRhaKLSOO0bPMyqG_024",
-            authDomain: "vagasctsp.firebaseapp.com",
-            projectId: "vagasctsp",
-            storageBucket: "vagasctsp.firebasestorage.app",
-            messagingSenderId: "707298540442",
-            appId: "1:707298540442:web:f3c8a3b2cb5a091b601823"
-        };
+       const firebaseConfig = {
+        apiKey: "AIzaSyCPL6vlsPj7lJhNRhaKLSOO0bPMyqG_024",
+        authDomain: "vagasctsp.firebaseapp.com",
+        projectId: "vagasctsp",
+        storageBucket: "vagasctsp.firebasestorage.app",
+        messagingSenderId: "707298540442",
+        appId: "1:707298540442:web:f3c8a3b2cb5a091b601823"
+    };
         
         let appId = 'vagasctsp-2026'; // ID interno para organização dos dados
 
@@ -664,6 +664,7 @@
     </script>
 </body>
 </html>
+
 
 
 

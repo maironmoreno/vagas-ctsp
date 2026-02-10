@@ -51,7 +51,7 @@
     <div id="root"></div>
 
     <script type="text/babel" data-type="module">
-        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { initializeApp } from 'https://www.gstatic.com/basejs/10.7.1/firebase-app.js';
         import { getAuth, signInAnonymously, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
         import { getFirestore, collection, doc, setDoc, onSnapshot, query } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
 
@@ -305,17 +305,17 @@
               {"id": "4626419", "ant": 625, "nome": "ADAUTO CESAR ACUNHA SARAIVA", "lotacao": "São Sepé"}
 ];
 
-        // --- CONFIGURAÇÃO FIREBASE (GITHUB PAGES) ---
+      // --- CONFIGURAÇÃO FIREBASE (ATUALIZADA) ---
         const firebaseConfig = {
-            apiKey: "AIzaSyAimXQSU5WX69hoEk02l4Q4YeQ-vMCi2xY",
-            authDomain: "vagas-ctsp-2026.firebaseapp.com",
-            projectId: "vagas-ctsp-2026",
-            storageBucket: "vagas-ctsp-2026.firebasestorage.app",
-            messagingSenderId: "336019414677",
-            appId: "1:336019414677:web:45726517bcd4b82077859c"
+            apiKey: "AIzaSyCPL6vlsPj7lJhNRhaKLSOO0bPMyqG_024",
+            authDomain: "vagasctsp.firebaseapp.com",
+            projectId: "vagasctsp",
+            storageBucket: "vagasctsp.firebasestorage.app",
+            messagingSenderId: "707298540442",
+            appId: "1:707298540442:web:f3c8a3b2cb5a091b601823"
         };
         
-        let appId = 'cbmrs-movimentacao-2026';
+        let appId = 'vagasctsp-2026'; // ID interno para organização dos dados
 
         try {
             if (typeof window.__firebase_config !== 'undefined') {
@@ -664,6 +664,7 @@
     </script>
 </body>
 </html>
+
 
 
 

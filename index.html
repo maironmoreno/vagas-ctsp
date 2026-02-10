@@ -27,201 +27,10 @@
 
         const { useState, useEffect, useMemo } = React;
 
-        const VAGAS_DATA = [
-            {"cidade": "Porto Alegre", "vagas": 21}, {"cidade": "São Leopoldo", "vagas": 15}, {"cidade": "Triunfo", "vagas": 2}, {"cidade": "Dois Irmãos", "vagas": 1}, {"cidade": "Portão", "vagas": 2}, {"cidade": "Novo Hamburgo", "vagas": 3}, {"cidade": "Pelotas", "vagas": 6}, {"cidade": "Rio Grande", "vagas": 5}, {"cidade": "Santa Vitória do Palmar", "vagas": 2}, {"cidade": "Santa Maria", "vagas": 17}, {"cidade": "Júlio de Castilhos", "vagas": 3}, {"cidade": "Caçapava do Sul", "vagas": 3}, {"cidade": "São Sepé", "vagas": 1}, {"cidade": "Caxias do Sul", "vagas": 22}, {"cidade": "São Marcos", "vagas": 1}, {"cidade": "Taquara", "vagas": 2}, {"cidade": "Veranópolis", "vagas": 2}, {"cidade": "Lagoa Vermelha", "vagas": 1}, {"cidade": "Vacaria", "vagas": 2}, {"cidade": "Gramado", "vagas": 2}, {"cidade": "Bento Gonçalves", "vagas": 1}, {"cidade": "Guaíba", "vagas": 1}, {"cidade": "Rio Pardo", "vagas": 1}, {"cidade": "São Lourenço do Sul", "vagas": 2}, {"cidade": "Camaquã", "vagas": 1}, {"cidade": "Vera Cruz", "vagas": 1}, {"cidade": "Venâncio Aires", "vagas": 1}, {"cidade": "Passo Fundo", "vagas": 12}, {"cidade": "Guaporé", "vagas": 2}, {"cidade": "Erechim", "vagas": 8}, {"cidade": "Nonoai", "vagas": 1}, {"cidade": "Soledade", "vagas": 1}, {"cidade": "Getúlio Vargas", "vagas": 2}, {"cidade": "Carazinho", "vagas": 3}, {"cidade": "Tapera", "vagas": 2}, {"cidade": "Sarandi", "vagas": 3}, {"cidade": "Canoas", "vagas": 9}, {"cidade": "Viamão", "vagas": 1}, {"cidade": "Alvorada", "vagas": 1}, {"cidade": "Tramandaí", "vagas": 5}, {"cidade": "Capão da Canoa", "vagas": 1}, {"cidade": "Terra de Areia", "vagas": 1}, {"cidade": "Santana do Livramento", "vagas": 3}, {"cidade": "Quaraí", "vagas": 1}, {"cidade": "Dom Pedrito", "vagas": 1}, {"cidade": "Bagé", "vagas": 1}, {"cidade": "Ibirubá", "vagas": 1}, {"cidade": "Palmeira das Missões", "vagas": 1}, {"cidade": "Frederico Westphalen", "vagas": 2}, {"cidade": "Uruguaiana", "vagas": 2}, {"cidade": "Barra do Quaraí", "vagas": 1}, {"cidade": "Santiago", "vagas": 2}, {"cidade": "Não irei escolher", "vagas": 9999}
-        ];
+        // --- DADOS E CONFIGURAÇÃO ---
+        const VAGAS_DATA = [{"cidade": "Porto Alegre", "vagas": 21}, {"cidade": "São Leopoldo", "vagas": 15}, {"cidade": "Triunfo", "vagas": 2}, {"cidade": "Dois Irmãos", "vagas": 1}, {"cidade": "Portão", "vagas": 2}, {"cidade": "Novo Hamburgo", "vagas": 3}, {"cidade": "Pelotas", "vagas": 6}, {"cidade": "Rio Grande", "vagas": 5}, {"cidade": "Santa Vitória do Palmar", "vagas": 2}, {"cidade": "Santa Maria", "vagas": 17}, {"cidade": "Júlio de Castilhos", "vagas": 3}, {"cidade": "Caçapava do Sul", "vagas": 3}, {"cidade": "São Sepé", "vagas": 1}, {"cidade": "Caxias do Sul", "vagas": 22}, {"cidade": "São Marcos", "vagas": 1}, {"cidade": "Taquara", "vagas": 2}, {"cidade": "Veranópolis", "vagas": 2}, {"cidade": "Lagoa Vermelha", "vagas": 1}, {"cidade": "Vacaria", "vagas": 2}, {"cidade": "Gramado", "vagas": 2}, {"cidade": "Bento Gonçalves", "vagas": 1}, {"cidade": "Guaíba", "vagas": 1}, {"cidade": "Rio Pardo", "vagas": 1}, {"cidade": "São Lourenço do Sul", "vagas": 2}, {"cidade": "Camaquã", "vagas": 1}, {"cidade": "Vera Cruz", "vagas": 1}, {"cidade": "Venâncio Aires", "vagas": 1}, {"cidade": "Passo Fundo", "vagas": 12}, {"cidade": "Guaporé", "vagas": 2}, {"cidade": "Erechim", "vagas": 8}, {"cidade": "Nonoai", "vagas": 1}, {"cidade": "Soledade", "vagas": 1}, {"cidade": "Getúlio Vargas", "vagas": 2}, {"cidade": "Carazinho", "vagas": 3}, {"cidade": "Tapera", "vagas": 2}, {"cidade": "Sarandi", "vagas": 3}, {"cidade": "Canoas", "vagas": 9}, {"cidade": "Viamão", "vagas": 1}, {"cidade": "Alvorada", "vagas": 1}, {"cidade": "Tramandaí", "vagas": 5}, {"cidade": "Capão da Canoa", "vagas": 1}, {"cidade": "Terra de Areia", "vagas": 1}, {"cidade": "Santana do Livramento", "vagas": 3}, {"cidade": "Quaraí", "vagas": 1}, {"cidade": "Dom Pedrito", "vagas": 1}, {"cidade": "Bagé", "vagas": 1}, {"cidade": "Ibirubá", "vagas": 1}, {"cidade": "Palmeira das Missões", "vagas": 1}, {"cidade": "Frederico Westphalen", "vagas": 2}, {"cidade": "Uruguaiana", "vagas": 2}, {"cidade": "Barra do Quaraí", "vagas": 1}, {"cidade": "Santiago", "vagas": 2}, {"cidade": "Não irei escolher", "vagas": 9999}];
 
-        const SARGENTOS_DATA = [
-            {"id": "2877953", "ant": 307, "nome": "EDGAR DA SILVA GODINHO", "lotacao": "Vacaria"},
-            {"id": "2891301", "ant": 308, "nome": "JAIR JUNIOR MACHADO FERREIRA", "lotacao": "Porto Alegre"},
-            {"id": "2910233", "ant": 310, "nome": "VINICIUS MACHADO DE MORAES", "lotacao": "São Lourenço do Sul"},
-            {"id": "2919192", "ant": 311, "nome": "ROSEANE VERA MILITZ CARVALHO", "lotacao": "Passo Fundo"},
-            {"id": "2911400", "ant": 313, "nome": "FRANCISCO DELMAR LANZ JUNIOR", "lotacao": "Parobé"},
-            {"id": "2918960", "ant": 321, "nome": "ADRIANO ALMEIDA LARRONDO", "lotacao": "Cachoeira do Sul"},
-            {"id": "2919150", "ant": 324, "nome": "MOISÉS SANTOS DA SILVA", "lotacao": "Rio Grande"},
-            {"id": "2910527", "ant": 325, "nome": "LUIS FERNANDO BARRAGAN FERREIRA", "lotacao": "Canguçu"},
-            {"id": "2919249", "ant": 326, "nome": "JOSE ADAO DIAS NEVES", "lotacao": "Quaraí"},
-            {"id": "2915650", "ant": 330, "nome": "JEAN DE FREITAS NUNES", "lotacao": "São Borja"},
-            {"id": "2918650", "ant": 331, "nome": "FLAVIO HEINRICH", "lotacao": "Santa Cruz do Sul"},
-            {"id": "2915804", "ant": 333, "nome": "LEANDRO DOS SANTOS ESPÍNDULA", "lotacao": "Osório"},
-            {"id": "2917947", "ant": 334, "nome": "FRANCKLIN DOUGLAS RIBEIRO DO AMARAL", "lotacao": "Osório"},
-            {"id": "2919478", "ant": 335, "nome": "FAUSTO FARIAS DOS SANTOS", "lotacao": "Porto Alegre"},
-            {"id": "2919346", "ant": 336, "nome": "FRANCIONE BECKER", "lotacao": "Santo Ângelo"},
-            {"id": "2969939", "ant": 337, "nome": "DAIR GUTOWSKI", "lotacao": "Erechim"},
-            {"id": "2968614", "ant": 338, "nome": "PAULO VAGNER PERUZZI AZOLIN", "lotacao": "São Luiz Gonzaga"},
-            {"id": "2969424", "ant": 345, "nome": "ADRIANO IENSEN PENDEZA", "lotacao": "Santa Maria"},
-            {"id": "2788403", "ant": 346, "nome": "DANIEL LIMA LAGEMANN", "lotacao": "Restinga Sêca"},
-            {"id": "2973588", "ant": 347, "nome": "MAIQUER PERES COUTO", "lotacao": "Bagé"},
-            {"id": "2968410", "ant": 348, "nome": "ALAN DIONES DA SILVA PAIM", "lotacao": "Vacaria"},
-            {"id": "2969580", "ant": 349, "nome": "JOAO CARLOS SILVA CARPES", "lotacao": "São Borja"},
-            {"id": "2969912", "ant": 350, "nome": "DENER LEMOS CORREA", "lotacao": "Dom Pedrito"},
-            {"id": "2969289", "ant": 351, "nome": "VANDER VIEIRA RODRIGUES", "lotacao": "Farroupilha"},
-            {"id": "2974223", "ant": 352, "nome": "CESAR MALET RODRIGUES", "lotacao": "Santo Antônio da Patrulha"},
-            {"id": "2969459", "ant": 354, "nome": "ANDRE STRINGHI MARQUES", "lotacao": "Pelotas"},
-            {"id": "2973871", "ant": 355, "nome": "ELISETE DE FATIMA DORNELES ANTUNES", "lotacao": "Tramandaí"},
-            {"id": "2971577", "ant": 358, "nome": "JULIANO BARREIRO QUIRINO", "lotacao": "Porto Alegre"},
-            {"id": "2968258", "ant": 359, "nome": "ODAIR DOS SANTOS DORNELLES", "lotacao": "Sapiranga"},
-            {"id": "2972794", "ant": 360, "nome": "EMERSON ALVES GOMES", "lotacao": "São José do Norte"},
-            {"id": "2973278", "ant": 362, "nome": "EBERSON CORREA DA SILVA", "lotacao": "Capão da Canoa"},
-            {"id": "2916797", "ant": 364, "nome": "DIEGO DA SILVA", "lotacao": "Cachoeira do Sul"},
-            {"id": "2821834", "ant": 368, "nome": "RODRIGO PIRES DA SILVA", "lotacao": "Estrela"},
-            {"id": "2996677", "ant": 369, "nome": "BERNARDO GOTTWALD", "lotacao": "Três Passos"},
-            {"id": "2995808", "ant": 370, "nome": "TIAGO ARTUR ROHLEDER", "lotacao": "Sapiranga"},
-            {"id": "2993775", "ant": 371, "nome": "JOSE FELIPE DE ASSUMPCAO MARINHO", "lotacao": "Santo Antônio da Patrulha"},
-            {"id": "2995506", "ant": 372, "nome": "SIDNEI SEVERO DA SILVA", "lotacao": "Santa Maria"},
-            {"id": "2991926", "ant": 373, "nome": "DERLI DA CRUZ RIOS", "lotacao": "São Luiz Gonzaga"},
-            {"id": "2992825", "ant": 374, "nome": "ALESSANDRO SOARES CASTRO", "lotacao": "Guaíba"},
-            {"id": "2786958", "ant": 375, "nome": "ARMANDO FREITAS SALDANHA", "lotacao": "Santa Maria"},
-            {"id": "2825732", "ant": 378, "nome": "MARCOS DE PAULA CAMARGO", "lotacao": "Santa Rosa"},
-            {"id": "2991322", "ant": 380, "nome": "AURELIO JUAREZ RODRIGUES", "lotacao": "Porto Alegre"},
-            {"id": "2995093", "ant": 381, "nome": "ROBERSON PERES CABRAL", "lotacao": "Pelotas"},
-            {"id": "2995840", "ant": 382, "nome": "VANISE SCHNEIDER", "lotacao": "Três de Maio"},
-            {"id": "2993872", "ant": 384, "nome": "JUNIOR MARQUES DE MARQUES", "lotacao": "Caçapava do Sul"},
-            {"id": "2992930", "ant": 388, "nome": "CRISTIANO WILLIAM SOUZA", "lotacao": "Passo Fundo"},
-            {"id": "2994291", "ant": 391, "nome": "MARIA MEDIANEIRA DOS SANTOS", "lotacao": "Vera Cruz"},
-            {"id": "2994305", "ant": 393, "nome": "MAICON MULLER SCHMITT", "lotacao": "Santa Maria"},
-            {"id": "2993430", "ant": 394, "nome": "JONY CAZAUBON DA SILVA", "lotacao": "Bento Gonçalves"},
-            {"id": "2994976", "ant": 395, "nome": "RAFAEL RELINGUE RODRIGUES", "lotacao": "Dom Pedrito"},
-            {"id": "2993945", "ant": 396, "nome": "JAKSON RODRIGO MELO", "lotacao": "Soledade"},
-            {"id": "2994364", "ant": 398, "nome": "MARNEN CABREIRA DE SOUZA", "lotacao": "Santa Vitória do Palmar"},
-            {"id": "2994500", "ant": 399, "nome": "LEANDRO TEIXEIRA NUNES", "lotacao": "Porto Alegre"},
-            {"id": "3058417", "ant": 400, "nome": "JUARES ROBERTO KAISEKAMP", "lotacao": "Sapucaia do Sul"},
-            {"id": "2993651", "ant": 401, "nome": "JULIO FRANCISCO HAITO", "lotacao": "Caxias do Sul"},
-            {"id": "2993848", "ant": 402, "nome": "JOHNATHAN RAMON SANTOS PEREIRA", "lotacao": "Lajeado"},
-            {"id": "2784947", "ant": 403, "nome": "ELISANDRO STELLO ZIEGLER", "lotacao": "Santa Maria"},
-            {"id": "2856425", "ant": 404, "nome": "PAULO ANTONIO RODRIGUES DOS SANTOS JUNIOR", "lotacao": "Caxias do Sul"},
-            {"id": "2993961", "ant": 407, "nome": "LUCIANO DIAS KULMANN", "lotacao": "Itaqui"},
-            {"id": "2994640", "ant": 408, "nome": "MARIANE PIRES MOLINA", "lotacao": "São Gabriel"},
-            {"id": "3144941", "ant": 412, "nome": "LEANDRO NUNES SAIKOSKI", "lotacao": "Santo Antônio da Patrulha"},
-            {"id": "3155048", "ant": 413, "nome": "JONATAN HARTMANN", "lotacao": "Farroupilha"},
-            {"id": "3144054", "ant": 417, "nome": "GELLIARD LINHAR DE SOUZA", "lotacao": "São José do Norte"},
-            {"id": "3135780", "ant": 418, "nome": "JEISON JAIR RODRIGUES SCALCON", "lotacao": "Rosário do Sul"},
-            {"id": "3153525", "ant": 422, "nome": "IGOR LEMOES XAVIER", "lotacao": "Pelotas"},
-            {"id": "3154920", "ant": 424, "nome": "JULIANO ANTONIO CAPA DOS REIS", "lotacao": "Montenegro"},
-            {"id": "3147800", "ant": 426, "nome": "RICARDO PORTO DORNELES", "lotacao": "Ivoti"},
-            {"id": "3166619", "ant": 428, "nome": "BRUNO DA COSTA SILVA MENEZES", "lotacao": "Passo Fundo"},
-            {"id": "3161706", "ant": 429, "nome": "ENO GALITO DA SILVA", "lotacao": "Santiago"},
-            {"id": "3152677", "ant": 432, "nome": "ALEXANDRE SCHIFELBEIN", "lotacao": "Bento Gonçalves"},
-            {"id": "3152375", "ant": 433, "nome": "BRUNO BRANDOLT PEDROSO", "lotacao": "Alegrete"},
-            {"id": "2871653", "ant": 434, "nome": "JUNIR SCESNY", "lotacao": "Erechim"},
-            {"id": "3147657", "ant": 436, "nome": "CLEBER ESPINDOLA DA SILVA", "lotacao": "Terra de Areia"},
-            {"id": "2956659", "ant": 439, "nome": "MARCELO NORNBERG BERGMANN", "lotacao": "Pelotas"},
-            {"id": "3157113", "ant": 440, "nome": "LUCIAN ALVES INSAURRIAGA", "lotacao": "Pelotas"},
-            {"id": "3138054", "ant": 441, "nome": "AIRTON DA SILVA VIEIRA JUNIOR", "lotacao": "Alvorada"},
-            {"id": "2824361", "ant": 442, "nome": "ROGER DA SILVA BEHLING", "lotacao": "São Borja"},
-            {"id": "2959879", "ant": 443, "nome": "DOUGLAS DOS SANTOS CAVALEIRO", "lotacao": "Capão da Canoa"},
-            {"id": "3147576", "ant": 451, "nome": "MAURICIO CHAVES DOS SANTOS", "lotacao": "Ivoti"},
-            {"id": "3164853", "ant": 452, "nome": "HORIZONTE DE JESUS AGUIRRE JUNIOR", "lotacao": "Parobé"},
-            {"id": "3154742", "ant": 453, "nome": "ISMAEL LAZO DE OLIVEIRA", "lotacao": "Santa Vitória do Palmar"},
-            {"id": "2987490", "ant": 454, "nome": "MAIRON GOULART MORENO", "lotacao": "Jaguarão"},
-            {"id": "3153770", "ant": 456, "nome": "NATALIA DA CRUZ ANGRIZANO PISKE", "lotacao": "Pelotas"},
-            {"id": "3135837", "ant": 458, "nome": "SIDINEI MENDONCA", "lotacao": "Tramandaí"},
-            {"id": "3137562", "ant": 459, "nome": "NERISSON LENHARDT WESZ", "lotacao": "Dois Irmãos"},
-            {"id": "2871980", "ant": 460, "nome": "DELIR ANDRÉ DOS SANTOS PESSOTA", "lotacao": "Porto Alegre"},
-            {"id": "3143031", "ant": 461, "nome": "FERNANDO FEYH", "lotacao": "Estrela"},
-            {"id": "2824019", "ant": 462, "nome": "ACY DA SILVA UMPIERRE NETO", "lotacao": "Caçapava do Sul"},
-            {"id": "3165779", "ant": 463, "nome": "RAFAEL LUCCHESE BORGMANN", "lotacao": "Vera Cruz"},
-            {"id": "3146898", "ant": 465, "nome": "MARCOS APARECIDO DA LUZ", "lotacao": "Farroupilha"},
-            {"id": "3158900", "ant": 466, "nome": "RUDRI ANGELO PETRY DOS SANTOS", "lotacao": "Santo Antônio da Patrulha"},
-            {"id": "3151581", "ant": 467, "nome": "VALMIR DA ROSA SARUBA", "lotacao": "Caxias do Sul"},
-            {"id": "2871017", "ant": 468, "nome": "ANDRE LUIS VASILUK", "lotacao": "Erechim"},
-            {"id": "3695450", "ant": 469, "nome": "CRISTIAN BAUER DE MORAES", "lotacao": "Cachoeira do Sul"},
-            {"id": "3697487", "ant": 470, "nome": "GUILHERME ANDRE OLKOSKI DA SILVA", "lotacao": "Sapiranga"},
-            {"id": "3698505", "ant": 474, "nome": "VANDERLAN MORAIS ANDRADE", "lotacao": "São Borja"},
-            {"id": "3696596", "ant": 475, "nome": "FERNANDO BELGRAVO KOHAUT DA SILVA", "lotacao": "Carazinho"},
-            {"id": "2985675", "ant": 476, "nome": "DIEGO ROSA BOTEGA", "lotacao": "Porto Alegre"},
-            {"id": "3695719", "ant": 479, "nome": "PAULO ROBERTO JUNIOR DA SILVA RIBEIRO", "lotacao": "Quaraí"},
-            {"id": "3699358", "ant": 480, "nome": "HUESLEI ALVARENGA BERCHON", "lotacao": "São Leopoldo"},
-            {"id": "3694577", "ant": 481, "nome": "CRISTIANE ELISA BIEGER ANDRADE", "lotacao": "São Luiz Gonzaga"},
-            {"id": "3696197", "ant": 483, "nome": "ELVIS DOS ANJOS SILVA", "lotacao": "Santa Maria"},
-            {"id": "3203212", "ant": 485, "nome": "LUCAS BRUM GUEDES", "lotacao": "Gramado"},
-            {"id": "3695565", "ant": 487, "nome": "WILLIAM LICHT DOS SANTOS", "lotacao": "Torres"},
-            {"id": "3694810", "ant": 488, "nome": "FELIPE VARGAS OLIVEIRA", "lotacao": "Santa Cruz do Sul"},
-            {"id": "3698530", "ant": 491, "nome": "RAFAEL LISCANO", "lotacao": "Jaguarão"},
-            {"id": "3694607", "ant": 493, "nome": "VAGNER ANTONIO CARDOSO MEREGALLI", "lotacao": "Cidreira"},
-            {"id": "3697479", "ant": 495, "nome": "CESAR AUGUSTO CHRISTMANN", "lotacao": "Santa Cruz do Sul"},
-            {"id": "3697908", "ant": 497, "nome": "JOAO GABRIEL GRANDO GUEDES", "lotacao": "Soledade"},
-            {"id": "3695433", "ant": 498, "nome": "MAIKEL NUNES MARQUARDT", "lotacao": "Santa Cruz do Sul"},
-            {"id": "3695735", "ant": 499, "nome": "MURILO MIGUEL SCHMITZ", "lotacao": "Santiago"},
-            {"id": "3203476", "ant": 500, "nome": "MARCIANO DA SILVA BUENO", "lotacao": "Bento Gonçalves"},
-            {"id": "3697134", "ant": 502, "nome": "VICTOR MATHEUS DA GAMA GULARTE", "lotacao": "Santa Vitória do Palmar"},
-            {"id": "3696367", "ant": 503, "nome": "VIRGILIO HENRIQUE LUZZI", "lotacao": "Lajeado"},
-            {"id": "3698963", "ant": 504, "nome": "REGIS DUTRA CARDOSO", "lotacao": "Cruz Alta"},
-            {"id": "3697320", "ant": 505, "nome": "WILLIAM RODRIGO SILVA DE OLIVEIRA", "lotacao": "Jaguarão"},
-            {"id": "3706028", "ant": 511, "nome": "ALINE FRANCIELE SCHIEFELBEIN", "lotacao": "Portão"},
-            {"id": "3717070", "ant": 512, "nome": "MAICON OLIVEIRA RIBEIRO", "lotacao": "Santa Cruz do Sul"},
-            {"id": "4289137", "ant": 514, "nome": "JAIME JOSE REIS JUNIOR", "lotacao": "Capão da Canoa"},
-            {"id": "4289196", "ant": 515, "nome": "THIAGO DO AMARAL", "lotacao": "Estância Velha"},
-            {"id": "4289188", "ant": 516, "nome": "WAGNER GONÇALVES LIMA", "lotacao": "Sapucaia do Sul"},
-            {"id": "4289218", "ant": 518, "nome": "ALEXANDRE DANIEL SCHRODER", "lotacao": "Giruá"},
-            {"id": "4354001", "ant": 519, "nome": "DOUGLAS MACIEL SILVEIRA", "lotacao": "Santa Cruz do Sul"},
-            {"id": "4354427", "ant": 520, "nome": "DIONATAN MENEN LUIS DA ROSA MACHADO", "lotacao": "Caçapava do Sul"},
-            {"id": "4355083", "ant": 521, "nome": "DAIANE DA SILVEIRA", "lotacao": "Novo Hamburgo"},
-            {"id": "4353781", "ant": 523, "nome": "MARCO AURELIO TOMIELLO ROCHA", "lotacao": "Porto Alegre"},
-            {"id": "4354354", "ant": 525, "nome": "ROGER PIRES DA SILVA", "lotacao": "Estância Velha"},
-            {"id": "3715361", "ant": 526, "nome": "NICOLAS MATOS DIAS DE CASTRO", "lotacao": "Tramandaí"},
-            {"id": "4355350", "ant": 527, "nome": "VINICIUS CARLOS SCHIRMER", "lotacao": "Taquara"},
-            {"id": "4354958", "ant": 529, "nome": "LUCAS CRUMMENAUER", "lotacao": "Panambi"},
-            {"id": "3736539", "ant": 531, "nome": "DOUGLAS FABRICIO SEIBT", "lotacao": "Venâncio Aires"},
-            {"id": "4355814", "ant": 532, "nome": "RAGNER SILVA DOS REIS", "lotacao": "Vacaria"},
-            {"id": "4354486", "ant": 533, "nome": "ITAIRAN DA SILVA QUARESMA", "lotacao": "Giruá"},
-            {"id": "4354524", "ant": 534, "nome": "EBERSON CORREA DA SILVA", "lotacao": "Ibirubá"},
-            {"id": "4355563", "ant": 536, "nome": "OLAVIO VALERIO FLESCH GONÇALVES", "lotacao": "Novo Hamburgo"},
-            {"id": "4354117", "ant": 537, "nome": "FABRICIO AMORIM MACHADO", "lotacao": "Nova Santa Rita"},
-            {"id": "4355431", "ant": 538, "nome": "EMERSON LUIS MAIA DA ROSA", "lotacao": "Cruz Alta"},
-            {"id": "4354567", "ant": 539, "nome": "LEANDRO BAQUES RESTA", "lotacao": "Soledade"},
-            {"id": "4356039", "ant": 540, "nome": "CASSIANO DE ALMEIDA FAVA", "lotacao": "Erechim"},
-            {"id": "4355237", "ant": 541, "nome": "JOHN ELVIS NOGUEIRA", "lotacao": "Parobé"},
-            {"id": "4354214", "ant": 543, "nome": "LUIZ ANTONIO AVILA CHAVES", "lotacao": "Soledade"},
-            {"id": "4355849", "ant": 544, "nome": "EZEQUIEL DE AVILLA", "lotacao": "Santa Maria"},
-            {"id": "4354141", "ant": 545, "nome": "RICARDO ANKLAM", "lotacao": "Santo Ângelo"},
-            {"id": "4387848", "ant": 546, "nome": "DIOGO DA SILVA DE OLIVEIRA", "lotacao": "Gramado"},
-            {"id": "4388194", "ant": 547, "nome": "PEDRO GIOVANE CAMARGO MARTINS", "lotacao": "Cruz Alta"},
-            {"id": "4388313", "ant": 548, "nome": "BRUNO PARABONI FIORIN", "lotacao": "Júlio de Castilhos"},
-            {"id": "4387880", "ant": 551, "nome": "ALCIONE SIBULSKI", "lotacao": "Giruá"},
-            {"id": "4388429", "ant": 552, "nome": "MATEUS VINICIUS GOBATTO", "lotacao": "Bento Gonçalves"},
-            {"id": "4387732", "ant": 553, "nome": "ADRIEL KAREL PACHECO DE MELLO", "lotacao": "Parobé"},
-            {"id": "4387791", "ant": 554, "nome": "ARTHUR FARIAS MARTINS", "lotacao": "Pelotas"},
-            {"id": "4395590", "ant": 556, "nome": "GABRIEL HOCHSCHEIDT", "lotacao": "Três de Maio"},
-            {"id": "4395808", "ant": 557, "nome": "FERNANDO LUCIAN SAUSEN AVILA", "lotacao": "Flores da Cunha"},
-            {"id": "4395123", "ant": 558, "nome": "FELIPE PEREIRA DA SILVA", "lotacao": "Santa Cruz do Sul"},
-            {"id": "4395247", "ant": 559, "nome": "FRANCISCO DE PAULA COLOMBY SIMOES", "lotacao": "Camaquã"},
-            {"id": "4395654", "ant": 560, "nome": "GENIANE NASCENTE DE OLIVEIRA", "lotacao": "Santa Cruz do Sul"},
-            {"id": "4354320", "ant": 562, "nome": "MAURICIO LEITE DE FARIAS JUNIOR", "lotacao": "Estância Velha"},
-            {"id": "4550161", "ant": 566, "nome": "SAMUEL MATEUS BRENTANO", "lotacao": "Novo Hamburgo"},
-            {"id": "4550412", "ant": 567, "nome": "FELIPE COSTA LOPES", "lotacao": "São Pedro do Sul"},
-            {"id": "4550714", "ant": 568, "nome": "ANTHONY GUTERRES DA SILVA", "lotacao": "Pelotas"},
-            {"id": "4550730", "ant": 573, "nome": "TAÍS NAIELE HETTWER", "lotacao": "Passo Fundo"},
-            {"id": "4550692", "ant": 574, "nome": "RICARDO BUENO MION", "lotacao": "Santo Ângelo"},
-            {"id": "4550471", "ant": 575, "nome": "HALLAN LOPES GUEDES", "lotacao": "Lajeado"},
-            {"id": "4550110", "ant": 578, "nome": "ROVAN LACERDA DE MOURA", "lotacao": "Sapucaia do Sul"},
-            {"id": "4549724", "ant": 579, "nome": "DANIEL BRUGNERA ACOSTA", "lotacao": "Santo Antônio da Patrulha"},
-            {"id": "4549694", "ant": 582, "nome": "ARCE DE LEÓN BOTELHA GOTTLIEB", "lotacao": "Parobé"},
-            {"id": "4549970", "ant": 587, "nome": "JOHNNY PIRES GODOY", "lotacao": "Farroupilha"},
-            {"id": "4550145", "ant": 588, "nome": "JOÃO PEDRO DE MOURA GARCIA SANTELLI", "lotacao": "Caxias do Sul"},
-            {"id": "4549902", "ant": 591, "nome": "GILIARDI SANTOS MAZUI", "lotacao": "Alegrete"},
-            {"id": "4550463", "ant": 592, "nome": "HIAGO MALDONADO DA SILVA", "lotacao": "Rosário do Sul"},
-            {"id": "4550455", "ant": 594, "nome": "RODRIGO LOPES BERNARDES", "lotacao": "Vera Cruz"},
-            {"id": "4550331", "ant": 597, "nome": "LEONARDO FUCK DÁVILA", "lotacao": "Campo Bom"},
-            {"id": "4550382", "ant": 599, "nome": "MARIÉLE LEANDRO DE LIMA", "lotacao": "São Gabriel"},
-            {"id": "4552253", "ant": 603, "nome": "ENZO TEIXEIRA MARTINS", "lotacao": "Novo Hamburgo"},
-            {"id": "4552342", "ant": 604, "nome": "VITOR RODRIGUES LEMKE", "lotacao": "Alvorada"},
-            {"id": "4595238", "ant": 606, "nome": "LUCAS MIETLICKI MARTINS", "lotacao": "Parobé"},
-            {"id": "4626290", "ant": 608, "nome": "MAURICIO LOPES DORES", "lotacao": "Porto Alegre"},
-            {"id": "4626036", "ant": 610, "nome": "GABRIEL AND RE SCHEIN", "lotacao": "Farroupilha"},
-            {"id": "4626680", "ant": 611, "nome": "THOMAZ LUIZ PIMENTEL", "lotacao": "Ibirubá"},
-            {"id": "4625617", "ant": 612, "nome": "JONATAS HOEFLING DIAS", "lotacao": "Farroupilha"},
-            {"id": "4625552", "ant": 613, "nome": "MORGANA FATIMA PEREIRA", "lotacao": "Horizontina"},
-            {"id": "4627059", "ant": 614, "nome": "DANUSA MUNARI FERENZ", "lotacao": "Erechim"},
-            {"id": "4625986", "ant": 615, "nome": "IZELEO DE PELLEGRIN JUNIOR", "lotacao": "Taquari"},
-            {"id": "4626540", "ant": 616, "nome": "BRUNO COPPETTI PERLIN", "lotacao": "Santo Ângelo"},
-            {"id": "4625650", "ant": 617, "nome": "STEVEN VAN HATTEM", "lotacao": "Dois Irmãos"},
-            {"id": "4626478", "ant": 620, "nome": "WESLEY TREVISOL MANICA", "lotacao": "Lajeado"},
-            {"id": "4625749", "ant": 621, "nome": "RAFAEL ZANCHETTIN", "lotacao": "Flores da Cunha"},
-            {"id": "4625536", "ant": 622, "nome": "FELIPE VOLKWEIS", "lotacao": "Dois Irmãos"},
-            {"id": "4626052", "ant": 623, "nome": "LEONARDO ZILIO", "lotacao": "Guaporé"},
-            {"id": "4626419", "ant": 625, "nome": "ADAUTO CESAR ACUNHA SARAIVA", "lotacao": "São Sepé"}
-        ];
+        const SARGENTOS_DATA = [{"id": "2877953", "ant": 307, "nome": "EDGAR DA SILVA GODINHO", "lotacao": "Vacaria"}, {"id": "2891301", "ant": 308, "nome": "JAIR JUNIOR MACHADO FERREIRA", "lotacao": "Porto Alegre"}, {"id": "2910233", "ant": 310, "nome": "VINICIUS MACHADO DE MORAES", "lotacao": "São Lourenço do Sul"}, {"id": "2919192", "ant": 311, "nome": "ROSEANE VERA MILITZ CARVALHO", "lotacao": "Passo Fundo"}, {"id": "2911400", "ant": 313, "nome": "FRANCISCO DELMAR LANZ JUNIOR", "lotacao": "Parobé"}, {"id": "2918960", "ant": 321, "nome": "ADRIANO ALMEIDA LARRONDO", "lotacao": "Cachoeira do Sul"}, {"id": "2919150", "ant": 324, "nome": "MOISÉS SANTOS DA SILVA", "lotacao": "Rio Grande"}, {"id": "2910527", "ant": 325, "nome": "LUIS FERNANDO BARRAGAN FERREIRA", "lotacao": "Canguçu"}, {"id": "2919249", "ant": 326, "nome": "JOSE ADAO DIAS NEVES", "lotacao": "Quaraí"}, {"id": "2915650", "ant": 330, "nome": "JEAN DE FREITAS NUNES", "lotacao": "São Borja"}, {"id": "2918650", "ant": 331, "nome": "FLAVIO HEINRICH", "lotacao": "Santa Cruz do Sul"}, {"id": "2915804", "ant": 333, "nome": "LEANDRO DOS SANTOS ESPÍNDULA", "lotacao": "Osório"}, {"id": "2917947", "ant": 334, "nome": "FRANCKLIN DOUGLAS RIBEIRO DO AMARAL", "lotacao": "Osório"}, {"id": "2919478", "ant": 335, "nome": "FAUSTO FARIAS DOS SANTOS", "lotacao": "Porto Alegre"}, {"id": "2919346", "ant": 336, "nome": "FRANCIONE BECKER", "lotacao": "Santo Ângelo"}, {"id": "2969939", "ant": 337, "nome": "DAIR GUTOWSKI", "lotacao": "Erechim"}, {"id": "2968614", "ant": 338, "nome": "PAULO VAGNER PERUZZI AZOLIN", "lotacao": "São Luiz Gonzaga"}, {"id": "2969424", "ant": 345, "nome": "ADRIANO IENSEN PENDEZA", "lotacao": "Santa Maria"}, {"id": "2788403", "ant": 346, "nome": "DANIEL LIMA LAGEMANN", "lotacao": "Restinga Sêca"}, {"id": "2973588", "ant": 347, "nome": "MAIQUER PERES COUTO", "lotacao": "Bagé"}, {"id": "2968410", "ant": 348, "nome": "ALAN DIONES DA SILVA PAIM", "lotacao": "Vacaria"}, {"id": "2969580", "ant": 349, "nome": "JOAO CARLOS SILVA CARPES", "lotacao": "São Borja"}, {"id": "2969912", "ant": 350, "nome": "DENER LEMOS CORREA", "lotacao": "Dom Pedrito"}, {"id": "2969289", "ant": 351, "nome": "VANDER VIEIRA RODRIGUES", "lotacao": "Farroupilha"}, {"id": "2974223", "ant": 352, "nome": "CESAR MALET RODRIGUES", "lotacao": "Santo Antônio da Patrulha"}, {"id": "2969459", "ant": 354, "nome": "ANDRE STRINGHI MARQUES", "lotacao": "Pelotas"}, {"id": "2973871", "ant": 355, "nome": "ELISETE DE FATIMA DORNELES ANTUNES", "lotacao": "Tramandaí"}, {"id": "2971577", "ant": 358, "nome": "JULIANO BARREIRO QUIRINO", "lotacao": "Porto Alegre"}, {"id": "2968258", "ant": 359, "nome": "ODAIR DOS SANTOS DORNELLES", "lotacao": "Sapiranga"}, {"id": "2972794", "ant": 360, "nome": "EMERSON ALVES GOMES", "lotacao": "São José do Norte"}, {"id": "2973278", "ant": 362, "nome": "EBERSON CORREA DA SILVA", "lotacao": "Capão da Canoa"}, {"id": "2916797", "ant": 364, "nome": "DIEGO DA SILVA", "lotacao": "Cachoeira do Sul"}, {"id": "2821834", "ant": 368, "nome": "RODRIGO PIRES DA SILVA", "lotacao": "Estrela"}, {"id": "2996677", "ant": 369, "nome": "BERNARDO GOTTWALD", "lotacao": "Três Passos"}, {"id": "2995808", "ant": 370, "nome": "TIAGO ARTUR ROHLEDER", "lotacao": "Sapiranga"}, {"id": "2993775", "ant": 371, "nome": "JOSE FELIPE DE ASSUMPCAO MARINHO", "lotacao": "Santo Antônio da Patrulha"}, {"id": "2995506", "ant": 372, "nome": "SIDNEI SEVERO DA SILVA", "lotacao": "Santa Maria"}, {"id": "2991926", "ant": 373, "nome": "DERLI DA CRUZ RIOS", "lotacao": "São Luiz Gonzaga"}, {"id": "2992825", "ant": 374, "nome": "ALESSANDRO SOARES CASTRO", "lotacao": "Guaíba"}, {"id": "2786958", "ant": 375, "nome": "ARMANDO FREITAS SALDANHA", "lotacao": "Santa Maria"}, {"id": "2825732", "ant": 378, "nome": "MARCOS DE PAULA CAMARGO", "lotacao": "Santa Rosa"}, {"id": "2991322", "ant": 380, "nome": "AURELIO JUAREZ RODRIGUES", "lotacao": "Porto Alegre"}, {"id": "2995093", "ant": 381, "nome": "ROBERSON PERES CABRAL", "lotacao": "Pelotas"}, {"id": "2995840", "ant": 382, "nome": "VANISE SCHNEIDER", "lotacao": "Três de Maio"}, {"id": "2993872", "ant": 384, "nome": "JUNIOR MARQUES DE MARQUES", "lotacao": "Caçapava do Sul"}, {"id": "2992930", "ant": 388, "nome": "CRISTIANO WILLIAM SOUZA", "lotacao": "Passo Fundo"}, {"id": "2994291", "ant": 391, "nome": "MARIA MEDIANEIRA DOS SANTOS", "lotacao": "Vera Cruz"}, {"id": "2994305", "ant": 393, "nome": "MAICON MULLER SCHMITT", "lotacao": "Santa Maria"}, {"id": "2993430", "ant": 394, "nome": "JONY CAZAUBON DA SILVA", "lotacao": "Bento Gonçalves"}, {"id": "2994976", "ant": 395, "nome": "RAFAEL RELINGUE RODRIGUES", "lotacao": "Dom Pedrito"}, {"id": "2993945", "ant": 396, "nome": "JAKSON RODRIGO MELO", "lotacao": "Soledade"}, {"id": "2994364", "ant": 398, "nome": "MARNEN CABREIRA DE SOUZA", "lotacao": "Santa Vitória do Palmar"}, {"id": "2994500", "ant": 399, "nome": "LEANDRO TEIXEIRA NUNES", "lotacao": "Porto Alegre"}, {"id": "3058417", "ant": 400, "nome": "JUARES ROBERTO KAISEKAMP", "lotacao": "Sapucaia do Sul"}, {"id": "2993651", "ant": 401, "nome": "JULIO FRANCISCO HAITO", "lotacao": "Caxias do Sul"}, {"id": "2993848", "ant": 402, "nome": "JOHNATHAN RAMON SANTOS PEREIRA", "lotacao": "Lajeado"}, {"id": "2784947", "ant": 403, "nome": "ELISANDRO STELLO ZIEGLER", "lotacao": "Santa Maria"}, {"id": "2856425", "ant": 404, "nome": "PAULO ANTONIO RODRIGUES DOS SANTOS JUNIOR", "lotacao": "Caxias do Sul"}, {"id": "2993961", "ant": 407, "nome": "LUCIANO DIAS KULMANN", "lotacao": "Itaqui"}, {"id": "2994640", "ant": 408, "nome": "MARIANE PIRES MOLINA", "lotacao": "São Gabriel"}, {"id": "3144941", "ant": 412, "nome": "LEANDRO NUNES SAIKOSKI", "lotacao": "Santo Antônio da Patrulha"}, {"id": "3155048", "ant": 413, "nome": "JONATAN HARTMANN", "lotacao": "Farroupilha"}, {"id": "3144054", "ant": 417, "nome": "GELLIARD LINHAR DE SOUZA", "lotacao": "São José do Norte"}, {"id": "3135780", "ant": 418, "nome": "JEISON JAIR RODRIGUES SCALCON", "lotacao": "Rosário do Sul"}, {"id": "3153525", "ant": 422, "nome": "IGOR LEMOES XAVIER", "lotacao": "Pelotas"}, {"id": "3154920", "ant": 424, "nome": "JULIANO ANTONIO CAPA DOS REIS", "lotacao": "Montenegro"}, {"id": "3147800", "ant": 426, "nome": "RICARDO PORTO DORNELES", "lotacao": "Ivoti"}, {"id": "3166619", "ant": 428, "nome": "BRUNO DA COSTA SILVA MENEZES", "lotacao": "Passo Fundo"}, {"id": "3161706", "ant": 429, "nome": "ENO GALITO DA SILVA", "lotacao": "Santiago"}, {"id": "3152677", "ant": 432, "nome": "ALEXANDRE SCHIFELBEIN", "lotacao": "Bento Gonçalves"}, {"id": "3152375", "ant": 433, "nome": "BRUNO BRANDOLT PEDROSO", "lotacao": "Alegrete"}, {"id": "2871653", "ant": 434, "nome": "JUNIR SCESNY", "lotacao": "Erechim"}, {"id": "3147657", "ant": 436, "nome": "CLEBER ESPINDOLA DA SILVA", "lotacao": "Terra de Areia"}, {"id": "2956659", "ant": 439, "nome": "MARCELO NORNBERG BERGMANN", "lotacao": "Pelotas"}, {"id": "3157113", "ant": 440, "nome": "LUCIAN ALVES INSAURRIAGA", "lotacao": "Pelotas"}, {"id": "3138054", "ant": 441, "nome": "AIRTON DA SILVA VIEIRA JUNIOR", "lotacao": "Alvorada"}, {"id": "2824361", "ant": 442, "nome": "ROGER DA SILVA BEHLING", "lotacao": "São Borja"}, {"id": "2959879", "ant": 443, "nome": "DOUGLAS DOS SANTOS CAVALEIRO", "lotacao": "Capão da Canoa"}, {"id": "3147576", "ant": 451, "nome": "MAURICIO CHAVES DOS SANTOS", "lotacao": "Ivoti"}, {"id": "3164853", "ant": 452, "nome": "HORIZONTE DE JESUS AGUIRRE JUNIOR", "lotacao": "Parobé"}, {"id": "3154742", "ant": 453, "nome": "ISMAEL LAZO DE OLIVEIRA", "lotacao": "Santa Vitória do Palmar"}, {"id": "2987490", "ant": 454, "nome": "MAIRON GOULART MORENO", "lotacao": "Jaguarão"}, {"id": "3153770", "ant": 456, "nome": "NATALIA DA CRUZ ANGRIZANO PISKE", "lotacao": "Pelotas"}, {"id": "3135837", "ant": 458, "nome": "SIDINEI MENDONCA", "lotacao": "Tramandaí"}, {"id": "3137562", "ant": 459, "nome": "NERISSON LENHARDT WESZ", "lotacao": "Dois Irmãos"}, {"id": "2871980", "ant": 460, "nome": "DELIR ANDRÉ DOS SANTOS PESSOTA", "lotacao": "Porto Alegre"}, {"id": "3143031", "ant": 461, "nome": "FERNANDO FEYH", "lotacao": "Estrela"}, {"id": "2824019", "ant": 462, "nome": "ACY DA SILVA UMPIERRE NETO", "lotacao": "Caçapava do Sul"}, {"id": "3165779", "ant": 463, "nome": "RAFAEL LUCCHESE BORGMANN", "lotacao": "Vera Cruz"}, {"id": "3146898", "ant": 465, "nome": "MARCOS APARECIDO DA LUZ", "lotacao": "Farroupilha"}, {"id": "3158900", "ant": 466, "nome": "RUDRI ANGELO PETRY DOS SANTOS", "lotacao": "Santo Antônio da Patrulha"}, {"id": "3151581", "ant": 467, "nome": "VALMIR DA ROSA SARUBA", "lotacao": "Caxias do Sul"}, {"id": "2871017", "ant": 468, "nome": "ANDRE LUIS VASILUK", "lotacao": "Erechim"}, {"id": "3695450", "ant": 469, "nome": "CRISTIAN BAUER DE MORAES", "lotacao": "Cachoeira do Sul"}, {"id": "3697487", "ant": 470, "nome": "GUILHERME ANDRE OLKOSKI DA SILVA", "lotacao": "Sapiranga"}, {"id": "3698505", "ant": 474, "nome": "VANDERLAN MORAIS ANDRADE", "lotacao": "São Borja"}, {"id": "3696596", "ant": 475, "nome": "FERNANDO BELGRAVO KOHAUT DA SILVA", "lotacao": "Carazinho"}, {"id": "2985675", "ant": 476, "nome": "DIEGO ROSA BOTEGA", "lotacao": "Porto Alegre"}, {"id": "3695719", "ant": 479, "nome": "PAULO ROBERTO JUNIOR DA SILVA RIBEIRO", "lotacao": "Quaraí"}, {"id": "3699358", "ant": 480, "nome": "HUESLEI ALVARENGA BERCHON", "lotacao": "São Leopoldo"}, {"id": "3694577", "ant": 481, "nome": "CRISTIANE ELISA BIEGER ANDRADE", "lotacao": "São Luiz Gonzaga"}, {"id": "3696197", "ant": 483, "nome": "ELVIS DOS ANJOS SILVA", "lotacao": "Santa Maria"}, {"id": "3203212", "ant": 485, "nome": "LUCAS BRUM GUEDES", "lotacao": "Gramado"}, {"id": "3695565", "ant": 487, "nome": "WILLIAM LICHT DOS SANTOS", "lotacao": "Torres"}, {"id": "3694810", "ant": 488, "nome": "FELIPE VARGAS OLIVEIRA", "lotacao": "Santa Cruz do Sul"}, {"id": "3698530", "ant": 491, "nome": "RAFAEL LISCANO", "lotacao": "Jaguarão"}, {"id": "3694607", "ant": 493, "nome": "VAGNER ANTONIO CARDOSO MEREGALLI", "lotacao": "Cidreira"}, {"id": "3697479", "ant": 495, "nome": "CESAR AUGUSTO CHRISTMANN", "lotacao": "Santa Cruz do Sul"}, {"id": "3697908", "ant": 497, "nome": "JOAO GABRIEL GRANDO GUEDES", "lotacao": "Soledade"}, {"id": "3695433", "ant": 498, "nome": "MAIKEL NUNES MARQUARDT", "lotacao": "Santa Cruz do Sul"}, {"id": "3695735", "ant": 499, "nome": "MURILO MIGUEL SCHMITZ", "lotacao": "Santiago"}, {"id": "3203476", "ant": 500, "nome": "MARCIANO DA SILVA BUENO", "lotacao": "Bento Gonçalves"}, {"id": "3697134", "ant": 502, "nome": "VICTOR MATHEUS DA GAMA GULARTE", "lotacao": "Santa Vitória do Palmar"}, {"id": "3696367", "ant": 503, "nome": "VIRGILIO HENRIQUE LUZZI", "lotacao": "Lajeado"}, {"id": "3698963", "ant": 504, "nome": "REGIS DUTRA CARDOSO", "lotacao": "Cruz Alta"}, {"id": "3697320", "ant": 505, "nome": "WILLIAM RODRIGO SILVA DE OLIVEIRA", "lotacao": "Jaguarão"}, {"id": "3706028", "ant": 511, "nome": "ALINE FRANCIELE SCHIEFELBEIN", "lotacao": "Portão"}, {"id": "3717070", "ant": 512, "nome": "MAICON OLIVEIRA RIBEIRO", "lotacao": "Santa Cruz do Sul"}, {"id": "4289137", "ant": 514, "nome": "JAIME JOSE REIS JUNIOR", "lotacao": "Capão da Canoa"}, {"id": "4289196", "ant": 515, "nome": "THIAGO DO AMARAL", "lotacao": "Estância Velha"}, {"id": "4289188", "ant": 516, "nome": "WAGNER GONÇALVES LIMA", "lotacao": "Sapucaia do Sul"}, {"id": "4289218", "ant": 518, "nome": "ALEXANDRE DANIEL SCHRODER", "lotacao": "Giruá"}, {"id": "4354001", "ant": 519, "nome": "DOUGLAS MACIEL SILVEIRA", "lotacao": "Santa Cruz do Sul"}, {"id": "4354427", "ant": 520, "nome": "DIONATAN MENEN LUIS DA ROSA MACHADO", "lotacao": "Caçapava do Sul"}, {"id": "4355083", "ant": 521, "nome": "DAIANE DA SILVEIRA", "lotacao": "Novo Hamburgo"}, {"id": "4353781", "ant": 523, "nome": "MARCO AURELIO TOMIELLO ROCHA", "lotacao": "Porto Alegre"}, {"id": "4354354", "ant": 525, "nome": "ROGER PIRES DA SILVA", "lotacao": "Estância Velha"}, {"id": "3715361", "ant": 526, "nome": "NICOLAS MATOS DIAS DE CASTRO", "lotacao": "Tramandaí"}, {"id": "4355350", "ant": 527, "nome": "VINICIUS CARLOS SCHIRMER", "lotacao": "Taquara"}, {"id": "4354958", "ant": 529, "nome": "LUCAS CRUMMENAUER", "lotacao": "Panambi"}, {"id": "3736539", "ant": 531, "nome": "DOUGLAS FABRICIO SEIBT", "lotacao": "Venâncio Aires"}, {"id": "4355814", "ant": 532, "nome": "RAGNER SILVA DOS REIS", "lotacao": "Vacaria"}, {"id": "4354486", "ant": 533, "nome": "ITAIRAN DA SILVA QUARESMA", "lotacao": "Giruá"}, {"id": "4354524", "ant": 534, "nome": "EBERSON CORREA DA SILVA", "lotacao": "Ibirubá"}, {"id": "4355563", "ant": 536, "nome": "OLAVIO VALERIO FLESCH GONÇALVES", "lotacao": "Novo Hamburgo"}, {"id": "4354117", "ant": 537, "nome": "FABRICIO AMORIM MACHADO", "lotacao": "Nova Santa Rita"}, {"id": "4355431", "ant": 538, "nome": "EMERSON LUIS MAIA DA ROSA", "lotacao": "Cruz Alta"}, {"id": "4354567", "ant": 539, "nome": "LEANDRO BAQUES RESTA", "lotacao": "Soledade"}, {"id": "4356039", "ant": 540, "nome": "CASSIANO DE ALMEIDA FAVA", "lotacao": "Erechim"}, {"id": "4355237", "ant": 541, "nome": "JOHN ELVIS NOGUEIRA", "lotacao": "Parobé"}, {"id": "4354214", "ant": 543, "nome": "LUIZ ANTONIO AVILA CHAVES", "lotacao": "Soledade"}, {"id": "4355849", "ant": 544, "nome": "EZEQUIEL DE AVILLA", "lotacao": "Santa Maria"}, {"id": "4354141", "ant": 545, "nome": "RICARDO ANKLAM", "lotacao": "Santo Ângelo"}, {"id": "4387848", "ant": 546, "nome": "DIOGO DA SILVA DE OLIVEIRA", "lotacao": "Gramado"}, {"id": "4388194", "ant": 547, "nome": "PEDRO GIOVANE CAMARGO MARTINS", "lotacao": "Cruz Alta"}, {"id": "4388313", "ant": 548, "nome": "BRUNO PARABONI FIORIN", "lotacao": "Júlio de Castilhos"}, {"id": "4387880", "ant": 551, "nome": "ALCIONE SIBULSKI", "lotacao": "Giruá"}, {"id": "4388429", "ant": 552, "nome": "MATEUS VINICIUS GOBATTO", "lotacao": "Bento Gonçalves"}, {"id": "4387732", "ant": 553, "nome": "ADRIEL KAREL PACHECO DE MELLO", "lotacao": "Parobé"}, {"id": "4387791", "ant": 554, "nome": "ARTHUR FARIAS MARTINS", "lotacao": "Pelotas"}, {"id": "4395590", "ant": 556, "nome": "GABRIEL HOCHSCHEIDT", "lotacao": "Três de Maio"}, {"id": "4395808", "ant": 557, "nome": "FERNANDO LUCIAN SAUSEN AVILA", "lotacao": "Flores da Cunha"}, {"id": "4395123", "ant": 558, "nome": "FELIPE PEREIRA DA SILVA", "lotacao": "Santa Cruz do Sul"}, {"id": "4395247", "ant": 559, "nome": "FRANCISCO DE PAULA COLOMBY SIMOES", "lotacao": "Camaquã"}, {"id": "4395654", "ant": 560, "nome": "GENIANE NASCENTE DE OLIVEIRA", "lotacao": "Santa Cruz do Sul"}, {"id": "4354320", "ant": 562, "nome": "MAURICIO LEITE DE FARIAS JUNIOR", "lotacao": "Estância Velha"}, {"id": "4550161", "ant": 566, "nome": "SAMUEL MATEUS BRENTANO", "lotacao": "Novo Hamburgo"}, {"id": "4550412", "ant": 567, "nome": "FELIPE COSTA LOPES", "lotacao": "São Pedro do Sul"}, {"id": "4550714", "ant": 568, "nome": "ANTHONY GUTERRES DA SILVA", "lotacao": "Pelotas"}, {"id": "4550730", "ant": 573, "nome": "TAÍS NAIELE HETTWER", "lotacao": "Passo Fundo"}, {"id": "4550692", "ant": 574, "nome": "RICARDO BUENO MION", "lotacao": "Santo Ângelo"}, {"id": "4550471", "ant": 575, "nome": "HALLAN LOPES GUEDES", "lotacao": "Lajeado"}, {"id": "4550110", "ant": 578, "nome": "ROVAN LACERDA DE MOURA", "lotacao": "Sapucaia do Sul"}, {"id": "4549724", "ant": 579, "nome": "DANIEL BRUGNERA ACOSTA", "lotacao": "Santo Antônio da Patrulha"}, {"id": "4549694", "ant": 582, "nome": "ARCE DE LEÓN BOTELHA GOTTLIEB", "lotacao": "Parobé"}, {"id": "4549970", "ant": 587, "nome": "JOHNNY PIRES GODOY", "lotacao": "Farroupilha"}, {"id": "4550145", "ant": 588, "nome": "JOÃO PEDRO DE MOURA GARCIA SANTELLI", "lotacao": "Caxias do Sul"}, {"id": "4549902", "ant": 591, "nome": "GILIARDI SANTOS MAZUI", "lotacao": "Alegrete"}, {"id": "4550463", "ant": 592, "nome": "HIAGO MALDONADO DA SILVA", "lotacao": "Rosário do Sul"}, {"id": "4550455", "ant": 594, "nome": "RODRIGO LOPES BERNARDES", "lotacao": "Vera Cruz"}, {"id": "4550331", "ant": 597, "nome": "LEONARDO FUCK DÁVILA", "lotacao": "Campo Bom"}, {"id": "4550382", "ant": 599, "nome": "MARIÉLE LEANDRO DE LIMA", "lotacao": "São Gabriel"}, {"id": "4552253", "ant": 603, "nome": "ENZO TEIXEIRA MARTINS", "lotacao": "Novo Hamburgo"}, {"id": "4552342", "ant": 604, "nome": "VITOR RODRIGUES LEMKE", "lotacao": "Alvorada"}, {"id": "4595238", "ant": 606, "nome": "LUCAS MIETLICKI MARTINS", "lotacao": "Parobé"}, {"id": "4626290", "ant": 608, "nome": "MAURICIO LOPES DORES", "lotacao": "Porto Alegre"}, {"id": "4626036", "ant": 610, "nome": "GABRIEL AND RE SCHEIN", "lotacao": "Farroupilha"}, {"id": "4626680", "ant": 611, "nome": "THOMAZ LUIZ PIMENTEL", "lotacao": "Ibirubá"}, {"id": "4625617", "ant": 612, "nome": "JONATAS HOEFLING DIAS", "lotacao": "Farroupilha"}, {"id": "4625552", "ant": 613, "nome": "MORGANA FATIMA PEREIRA", "lotacao": "Horizontina"}, {"id": "4627059", "ant": 614, "nome": "DANUSA MUNARI FERENZ", "lotacao": "Erechim"}, {"id": "4625986", "ant": 615, "nome": "IZELEO DE PELLEGRIN JUNIOR", "lotacao": "Taquari"}, {"id": "4626540", "ant": 616, "nome": "BRUNO COPPETTI PERLIN", "lotacao": "Santo Ângelo"}, {"id": "4625650", "ant": 617, "nome": "STEVEN VAN HATTEM", "lotacao": "Dois Irmãos"}, {"id": "4626478", "ant": 620, "nome": "WESLEY TREVISOL MANICA", "lotacao": "Lajeado"}, {"id": "4625749", "ant": 621, "nome": "RAFAEL ZANCHETTIN", "lotacao": "Flores da Cunha"}, {"id": "4625536", "ant": 622, "nome": "FELIPE VOLKWEIS", "lotacao": "Dois Irmãos"}, {"id": "4626052", "ant": 623, "nome": "LEONARDO ZILIO", "lotacao": "Guaporé"}, {"id": "4626419", "ant": 625, "nome": "ADAUTO CESAR ACUNHA SARAIVA", "lotacao": "São Sepé"}];
 
         const firebaseConfig = {
             apiKey: "AIzaSyCPL6vlsPj7lJhNRhaKLSOO0bPMyqG_024",
@@ -232,8 +41,7 @@
             appId: "1:707298540442:web:f3c8a3b2cb5a091b601823"
         };
         
-        let appId = 'vagasctsp-2026';
-
+        const appId = 'vagasctsp-2026';
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
@@ -271,8 +79,7 @@
 
             useEffect(() => {
                 signInAnonymously(auth).catch(e => console.error(e));
-                const unsubscribe = onAuthStateChanged(auth, setUser);
-                return () => unsubscribe();
+                onAuthStateChanged(auth, setUser);
             }, []);
 
             useEffect(() => {
@@ -290,13 +97,37 @@
                 }
             }, [selectedSergeant, allSelections]);
 
+            // --- LÓGICA DO DASHBOARD ---
+            const stats = useMemo(() => {
+                const totalSargentos = SARGENTOS_DATA.length;
+                const totalPreencheram = allSelections.length;
+                const totalFaltam = totalSargentos - totalPreencheram;
+                
+                const registeredIds = new Set(allSelections.map(s => s.id));
+                const pendingList = SARGENTOS_DATA.filter(s => !registeredIds.has(s.id)).sort((a,b) => a.ant - b.ant);
+
+                let excedentesList = [];
+                const cities = {};
+                allSelections.forEach(s => {
+                    if (!cities[s.cidade]) cities[s.cidade] = [];
+                    cities[s.cidade].push(s);
+                });
+
+                Object.keys(cities).forEach(cidade => {
+                    if (cidade === "Não irei escolher") return;
+                    const limit = VAGAS_DATA.find(v => v.cidade === cidade)?.vagas || 0;
+                    const sorted = cities[cidade].sort((a,b) => a.antiguidade - b.antiguidade);
+                    if (sorted.length > limit) {
+                        excedentesList = [...excedentesList, ...sorted.slice(limit)];
+                    }
+                });
+
+                return { totalSargentos, totalPreencheram, totalFaltam, pendingList, excedentesList: excedentesList.sort((a,b) => a.antiguidade - b.antiguidade) };
+            }, [allSelections]);
+
             const handleLogin = (sargento) => {
-                if (password === "193") {
-                    setSelectedSergeant(sargento);
-                    setLoginError("");
-                } else {
-                    setLoginError("Senha incorreta!");
-                }
+                if (password === "193") { setSelectedSergeant(sargento); setLoginError(""); }
+                else { setLoginError("Senha incorreta!"); }
             };
 
             const myStatus = useMemo(() => {
@@ -310,8 +141,6 @@
                 const cityVagas = VAGAS_DATA.find(v => v.cidade === selectedCity)?.vagas || 0;
                 return { rank, vagas: cityVagas, isIn: selectedCity === "Não irei escolher" || rank <= cityVagas, isNoChoice: selectedCity === "Não irei escolher" };
             }, [selectedCity, allSelections, selectedSergeant]);
-
-            const filteredSargentos = SARGENTOS_DATA.filter(s => s.id.includes(searchQuery) || s.nome.toLowerCase().includes(searchQuery.toLowerCase()));
 
             const handleSave = async () => {
                 if (!user || !selectedSergeant || !selectedCity) return;
@@ -333,21 +162,18 @@
                                 <p className="text-sm text-gray-500 italic">Digite sua matrícula para começar</p>
                             </div>
                             <div className="space-y-4">
-                                <div className="relative">
-                                    <span className="absolute left-3 top-3 text-gray-400"><Icon name="search" size={20} /></span>
-                                    <input type="text" placeholder="ID ou Nome..." className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg outline-none" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-                                </div>
+                                <input type="text" placeholder="Matrícula..." className="w-full px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-red-500" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
                                 {searchQuery.length >= 3 && (
                                     <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
                                         <label className="block text-[10px] font-bold text-blue-600 mb-1">SENHA DE ACESSO</label>
-                                        <input type="password" placeholder="Senha" className="w-full px-3 py-1 border border-gray-300 rounded outline-none text-sm" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                        <input type="password" placeholder="Senha" className="w-full px-3 py-1 border rounded text-sm outline-none" value={password} onChange={(e) => setPassword(e.target.value)} />
                                         {loginError && <p className="text-red-500 text-[10px] mt-1 font-bold">{loginError}</p>}
                                     </div>
                                 )}
-                                <div className="h-48 overflow-y-auto border border-gray-200 rounded-lg bg-gray-50 custom-scrollbar">
-                                    {filteredSargentos.map(s => (
-                                        <button key={s.id} onClick={() => handleLogin(s)} className="w-full text-left p-3 hover:bg-red-50 border-b last:border-0 transition-colors flex justify-between items-center">
-                                            <div><span className="font-medium text-gray-800 text-sm block">{s.nome}</span><span className="text-[10px] text-gray-500">ID: {s.id}</span></div>
+                                <div className="h-48 overflow-y-auto border rounded-lg bg-gray-50 custom-scrollbar">
+                                    {SARGENTOS_DATA.filter(s => s.id.includes(searchQuery) || s.nome.toLowerCase().includes(searchQuery.toLowerCase())).map(s => (
+                                        <button key={s.id} onClick={() => handleLogin(s)} className="w-full text-left p-3 hover:bg-red-50 border-b last:border-0 flex justify-between items-center">
+                                            <div><span className="font-medium text-gray-800 text-sm block">{s.nome}</span><span className="text-[10px] text-gray-500">ID: {s.id} | Ant: {s.ant}</span></div>
                                             <span className="text-red-600 text-xs font-bold uppercase">Entrar</span>
                                         </button>
                                     ))}
@@ -362,53 +188,124 @@
                 <div className="min-h-screen bg-gray-50 flex flex-col">
                     <header className="bg-red-700 text-white shadow-lg sticky top-0 z-10">
                         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                            <div className="flex items-center space-x-2"><Icon name="shield" className="text-white" /><div><div className="font-bold leading-none">Movimentação 2026</div><div className="text-xs opacity-80">Antiguidade</div></div></div>
+                            <div className="flex items-center space-x-2"><Icon name="shield" className="text-white" /><div className="font-bold">Movimentação 2026</div></div>
                             <div className="flex items-center space-x-4"><div className="text-right hidden sm:block font-bold">{selectedSergeant.nome}</div><button onClick={() => {setSelectedSergeant(null); setPassword("");}} className="p-2 hover:bg-red-800 rounded-lg"><Icon name="log-out" size={20} /></button></div>
                         </div>
                     </header>
-                    <main className="flex-1 container mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                        <div className="space-y-6">
-                            <div className="bg-white rounded-xl shadow-sm border p-6">
-                                <h2 className="text-lg font-bold mb-4 flex items-center"><Icon name="map-pin" size={20} className="mr-2 text-red-600" />Sua Escolha</h2>
-                                <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="w-full p-2 border rounded-lg outline-none bg-white mb-4">
-                                    <option value="">Selecione a Cidade...</option>
-                                    {VAGAS_DATA.map(v => <option key={v.cidade} value={v.cidade}>{v.cidade} ({v.vagas === 9999 ? 'Livre' : v.vagas + ' vagas'})</option>)}
-                                </select>
-                                {selectedCity && myStatus && (
-                                    <div className={`p-4 rounded-lg border-l-4 mb-4 ${myStatus.isIn ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'}`}>
-                                        <div className="text-sm font-bold">{myStatus.isNoChoice ? 'Opção Salva' : (myStatus.isIn ? 'Dentro das Vagas' : 'Excedente')}</div>
-                                        {!myStatus.isNoChoice && <p className="text-xs">Sua posição: {myStatus.rank}º de {myStatus.vagas} vagas</p>}
-                                    </div>
-                                )}
-                                <button onClick={handleSave} disabled={!selectedCity || saving} className="w-full py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 disabled:bg-gray-400">
-                                    {saving ? "Salvando..." : "Confirmar Interesse"}
-                                </button>
+
+                    <main className="flex-1 container mx-auto px-4 py-6 space-y-6">
+                        {/* --- STATUS DO PROCESSO (DASHBOARD) --- */}
+                        <div className="bg-white rounded-xl shadow-sm border p-4">
+                            <h2 className="text-lg font-bold text-gray-800 mb-4 flex items-center"><Icon name="bar-chart-2" size={20} className="mr-2 text-blue-600" />Status do Processo</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div className="bg-blue-50 p-3 rounded-lg text-center">
+                                    <div className="text-2xl font-bold text-blue-700">{stats.totalSargentos}</div>
+                                    <div className="text-[10px] text-blue-600 font-bold uppercase">Total Sargentos</div>
+                                </div>
+                                <div className="bg-green-50 p-3 rounded-lg text-center">
+                                    <div className="text-2xl font-bold text-green-700">{stats.totalPreencheram}</div>
+                                    <div className="text-[10px] text-green-600 font-bold uppercase">Preencheram</div>
+                                </div>
+                                <div className="bg-orange-50 p-3 rounded-lg text-center cursor-pointer hover:bg-orange-100 transition" onClick={() => setShowPending(!showPending)}>
+                                    <div className="text-2xl font-bold text-orange-700">{stats.totalFaltam}</div>
+                                    <div className="text-[10px] text-orange-600 font-bold uppercase flex items-center justify-center gap-1">Faltam {showPending ? '▲' : '▼'}</div>
+                                </div>
+                                <div className="bg-red-50 p-3 rounded-lg text-center cursor-pointer hover:bg-red-100 transition" onClick={() => setShowExcedentes(!showExcedentes)}>
+                                    <div className="text-2xl font-bold text-red-700">{stats.excedentesList.length}</div>
+                                    <div className="text-[10px] text-red-600 font-bold uppercase flex items-center justify-center gap-1">Em Excesso {showExcedentes ? '▲' : '▼'}</div>
+                                </div>
                             </div>
+
+                            {/* LISTA EXPANSÍVEL: PENDENTES */}
+                            {showPending && (
+                                <div className="mt-4 border-t pt-4">
+                                    <h3 className="text-xs font-bold text-gray-500 mb-2 uppercase">Aguardando preenchimento:</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 max-h-40 overflow-y-auto custom-scrollbar p-1">
+                                        {stats.pendingList.map(p => (
+                                            <div key={p.id} className="text-[10px] bg-gray-50 p-2 rounded border flex justify-between">
+                                                <span className="font-bold">{p.ant} - {p.nome.split(' ')[0]}</span>
+                                                <span className="text-gray-400 italic">{p.lotacao}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* LISTA EXPANSÍVEL: EXCEDENTES */}
+                            {showExcedentes && (
+                                <div className="mt-4 border-t pt-4">
+                                    <h3 className="text-xs font-bold text-red-600 mb-2 uppercase flex items-center"><Icon name="alert-triangle" size={14} className="mr-1"/> Militares fora das vagas:</h3>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-40 overflow-y-auto custom-scrollbar p-1">
+                                        {stats.excedentesList.length === 0 ? <p className="text-xs text-gray-400">Nenhum militar em excesso.</p> : stats.excedentesList.map(exc => (
+                                            <div key={exc.id} className="text-[10px] bg-red-50 p-2 rounded border border-red-100 flex justify-between">
+                                                <span className="font-bold text-red-800">{exc.antiguidade} - {exc.nome}</span>
+                                                <span className="font-bold uppercase">{exc.cidade}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                        <div className="lg:col-span-2">
-                            <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-                                <div className="p-4 bg-gray-50 border-b font-bold">Quadro de Ocupação</div>
-                                <div className="overflow-x-auto">
-                                    <table className="w-full text-left text-sm">
-                                        <thead className="bg-gray-100 uppercase text-[10px] text-gray-500">
-                                            <tr><th className="p-3">Cidade</th><th className="p-3 text-center">Vagas</th><th className="p-3 text-center">Interessados</th><th className="p-3">Classificados</th></tr>
-                                        </thead>
-                                        <tbody className="divide-y divide-gray-100">
-                                            {VAGAS_DATA.map(v => {
-                                                const inscritos = allSelections.filter(s => s.cidade === v.cidade).sort((a,b) => a.antiguidade - b.antiguidade);
-                                                return (
-                                                    <tr key={v.cidade} className="hover:bg-gray-50">
-                                                        <td className="p-3 font-medium">{v.cidade}</td>
-                                                        <td className="p-3 text-center font-bold">{v.vagas === 9999 ? '-' : v.vagas}</td>
-                                                        <td className="p-3 text-center"><span className="bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full text-xs">{inscritos.length}</span></td>
-                                                        <td className="p-3 text-[10px]">
-                                                            {inscritos.slice(0, v.vagas).map(i => <div key={i.id} className="border-b last:border-0">{i.antiguidade} - {i.nome.split(' ')[0]}</div>)}
-                                                        </td>
-                                                    </tr>
-                                                );
-                                            })}
-                                        </tbody>
-                                    </table>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <div className="space-y-6">
+                                <div className="bg-white rounded-xl shadow-sm border p-6">
+                                    <h2 className="text-lg font-bold mb-4 flex items-center"><Icon name="map-pin" size={20} className="mr-2 text-red-600" />Sua Escolha</h2>
+                                    <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)} className="w-full p-2 border rounded-lg outline-none bg-white mb-4">
+                                        <option value="">Selecione a Cidade...</option>
+                                        {VAGAS_DATA.map(v => <option key={v.cidade} value={v.cidade}>{v.cidade} ({v.vagas === 9999 ? 'Livre' : v.vagas + ' vagas'})</option>)}
+                                    </select>
+                                    {selectedCity && myStatus && (
+                                        <div className={`p-4 rounded-lg border-l-4 mb-4 ${myStatus.isIn ? 'bg-green-50 border-green-500' : 'bg-red-50 border-red-500'}`}>
+                                            <div className="text-sm font-bold uppercase">{myStatus.isNoChoice ? 'Opção Salva' : (myStatus.isIn ? 'Classificado' : 'Excedente')}</div>
+                                            {!myStatus.isNoChoice && <p className="text-xs">Sua posição: <span className="font-bold text-lg">{myStatus.rank}º</span> de {myStatus.vagas} vagas</p>}
+                                        </div>
+                                    )}
+                                    <button onClick={handleSave} disabled={!selectedCity || saving} className="w-full py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 disabled:bg-gray-400 transition shadow-md">
+                                        {saving ? "Salvando..." : "Confirmar Interesse"}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="lg:col-span-2">
+                                <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
+                                    <div className="p-4 bg-gray-50 border-b font-bold flex justify-between">
+                                        <span>Quadro de Ocupação Real-Time</span>
+                                        <span className="text-[10px] text-gray-400 font-normal self-center">Ordenado por Antiguidade</span>
+                                    </div>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-left text-sm">
+                                            <thead className="bg-gray-100 uppercase text-[10px] text-gray-500">
+                                                <tr><th className="p-3">Cidade</th><th className="p-3 text-center">Vagas</th><th className="p-3 text-center">Inscritos</th><th className="p-3">Classificados (Dentro das Vagas)</th></tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-gray-100">
+                                                {VAGAS_DATA.map(v => {
+                                                    const inscritos = allSelections.filter(s => s.cidade === v.cidade).sort((a,b) => a.antiguidade - b.antiguidade);
+                                                    const emExcesso = v.vagas !== 9999 && inscritos.length > v.vagas;
+                                                    return (
+                                                        <tr key={v.cidade} className="hover:bg-gray-50 align-top">
+                                                            <td className="p-3 font-medium">{v.cidade}</td>
+                                                            <td className="p-3 text-center font-bold">{v.vagas === 9999 ? '-' : v.vagas}</td>
+                                                            <td className="p-3 text-center">
+                                                                <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${emExcesso ? 'bg-red-100 text-red-700' : 'bg-blue-50 text-blue-700'}`}>
+                                                                    {inscritos.length}
+                                                                </span>
+                                                            </td>
+                                                            <td className="p-3 text-[10px] space-y-1">
+                                                                {inscritos.slice(0, v.vagas).map(i => (
+                                                                    <div key={i.id} className="flex justify-between border-b border-gray-50 last:border-0 pb-0.5">
+                                                                        <span className="font-bold w-6">{i.antiguidade}</span>
+                                                                        <span className="flex-1 ml-1 truncate">{i.nome}</span>
+                                                                    </div>
+                                                                ))}
+                                                                {inscritos.length === 0 && <span className="text-gray-300">-</span>}
+                                                            </td>
+                                                        </tr>
+                                                    );
+                                                })}
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
